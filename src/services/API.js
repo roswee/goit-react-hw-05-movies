@@ -13,9 +13,8 @@ export const fetchTrending = async (time = 'day') => {
   }
 };
 
-export const fetchDetails = async id => {
-    const response = await axios.get(
-      `movie/${id}?api_key=${API_KEY}`
+export const fetchDetails = async (id) => {
+    const response = await axios.get(`movie/${id}?api_key=${API_KEY}`
     );
     return response.data;
 };
@@ -25,6 +24,16 @@ export const fetchByQ = async value => {
   return (await response).data.results;
 };
 
-const api = { fetchTrending, fetchDetails, fetchByQ };
+export const fetchCast = async id => {
+  const response = await axios.get(`movie/${id}/credits?api_key=${API_KEY}`);
+  return response.data.cast
+}
+
+export const fetchReviews = async id => {
+  const response = await axios.get(`movie/${id}/reviews?api_key=${API_KEY}`)
+  return response.data.results
+}
+
+const api = { fetchTrending, fetchDetails, fetchByQ, fetchCast };
 
 export default api;

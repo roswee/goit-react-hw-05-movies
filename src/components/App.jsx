@@ -12,8 +12,11 @@ const MoviesPg = lazy(() =>
     default: module.MoviesPg,
   }))
 );
-const Cast = lazy(() => import('./Cast/Cast'));
-const Reviews = lazy(() => import('./Reviews/Reviews'));
+const Cast = lazy(() => import('./Cast/Cast').then(module => ({
+  default: module.Cast,
+})));
+const Reviews = lazy(() => import('./Reviews/Reviews').then(module => ({
+  default: module.Reviews})));
 const MovieDetailsPg = lazy(() =>
   import('./MovieDetailsPg/MovieDetailsPg').then(module => ({
     default: module.MovieDetailsPg,
@@ -51,7 +54,6 @@ export const App = () => {
           <StyledLink to="/"> Home </StyledLink>
           <StyledLink to="/movies"> Movies </StyledLink>
         </Nav>
-
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route

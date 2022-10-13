@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from 'services/API';
-import { Link } from 'react-router-dom';
-import { MovieMiniImg, TrendsList } from './HomepageStyled';
+import { MovieMiniImg, TrendsList, TrendsElement, TrendLink, HomepageSection } from './HomepageStyled';
 
 const Homepage = () => {
   const [trending, setTrending] = useState([]);
@@ -10,7 +9,6 @@ const Homepage = () => {
     try {
       const result = await api.fetchTrending();
       setTrending(result);
-      console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -21,19 +19,19 @@ const Homepage = () => {
   }, []);
 
   return (
-    <section>
+    <HomepageSection>
       <h2>Trending today</h2>
       <TrendsList>
         {trending.map(({ title, name, id, poster_path }) => (
-          <li key={id}>
+          <TrendsElement key={id}>
             <MovieMiniImg
               src={`https://image.tmdb.org/t/p/w500${poster_path}`}
             />
-            <Link to={`/movies/${id}`}>{title ? title : name}</Link>
-          </li>
+            <TrendLink to={`/movies/${id}`}>{title ? title : name}</TrendLink>
+          </TrendsElement>
         ))}
       </TrendsList>
-    </section>
+    </HomepageSection>
   );
 };
 

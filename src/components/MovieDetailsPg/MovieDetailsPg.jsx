@@ -1,7 +1,7 @@
 import { useEffect, useState, Suspense } from 'react';
 import { useLocation, useParams, Link, Outlet } from 'react-router-dom';
 import { fetchDetails } from 'services/API';
-import { Description, Details, MovieInfo } from './MovieDetailsPg.styled';
+import { Description, Details, MovieInfo, StyledLink, MovieDetails } from './MovieDetailsPg.styled';
 
 export const MovieDetailsPg = () => {
   const { id } = useParams();
@@ -16,7 +16,7 @@ export const MovieDetailsPg = () => {
   const renderDetails = async id => {
     try {
       const result = await fetchDetails(id);
-      setMovieById({ ...result });
+      setMovieById(result);
     } catch (error) {
       console.log(error);
     }
@@ -26,27 +26,26 @@ export const MovieDetailsPg = () => {
     release_date,
     vote_average,
     poster_path,
-    orginal_title,
+    original_title,
     overview,
     genres,
   } = movieById;
 
-  const movieYr = new Date(release_date).getFullyYear();
   const score = `${(vote_average * 10).toFixed(0)}%`;
+  const year = new Date(release_date).getFullYear();
 
   return (
-    <div>
-      <button to={bckBtn}>Go back</button>
+    <MovieDetails>
+      <StyledLink to={bckBtn}>Go back</StyledLink>
       <Details>
         <img
-          src={poster_path}
-          alt={orginal_title}
+          src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+          alt={original_title}
           width="300px"
         ></img>
         <Description>
           <h2>
-            {orginal_title}
-            {movieYr}
+            {original_title} ({year})
           </h2>
           <p>User Score: {score}</p>
 
@@ -58,23 +57,21 @@ export const MovieDetailsPg = () => {
         </Description>
       </Details>
       <MovieInfo>
-        <ul>
           Additional Information
           <li>
-            <Link to="cast" state={location.state}>
+            <StyledLink to="cast" state={location.state}>
               Cast
-            </Link>
+            </StyledLink>
           </li>
           <li>
-            <Link to="reviews" state={location.state}>
+            <StyledLink to="reviews" state={location.state}>
               Reviews
-            </Link>
+            </StyledLink>
           </li>
-        </ul>
       </MovieInfo>
       <Suspense fallback={<div>Please wait</div>}>
         <Outlet />
       </Suspense>
-    </div>
+    </MovieDetails>
   );
 };
