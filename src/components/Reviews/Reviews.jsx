@@ -17,7 +17,7 @@ export const Reviews = () => {
 
       useEffect(() => {
         renderReviews(id)
-      }, [])
+      }, [id])
 
       return (
         <ul>

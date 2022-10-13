@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { fetchCast } from "services/API";
-import {CastLink, CastMember} from "./CastStyles"
+import {CastLink, CastMember} from "./CastStyles";
 
 export const Cast = () => {
     const [castTeam, setCastTeam] = useState([]);
@@ -18,12 +18,13 @@ export const Cast = () => {
 
     useEffect(() => {
         renderCast(id)
-    }, [])
+    }, [id]);
+
     
     return (
         <CastLink>
-            {castTeam.map(({ id, original_name, character, profile_path }) => (
-                <CastMember key={id}>
+            {castTeam.map(({ original_name, character, profile_path }) => (
+                <CastMember key={original_name}>
                     <img src={
                         profile_path?
                         `https://image.tmdb.org/t/p/w500${profile_path}`

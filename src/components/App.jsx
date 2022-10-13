@@ -48,7 +48,6 @@ export const App = () => {
   };
 
   return (
-    <BrowserRouter>
       <Suspense fallback={<div>Please wait...</div>}>
         <Nav>
           <StyledLink to="/"> Home </StyledLink>
@@ -66,6 +65,5 @@ export const App = () => {
           </Route>
         </Routes>
       </Suspense>
-    </BrowserRouter>
   );
 };
