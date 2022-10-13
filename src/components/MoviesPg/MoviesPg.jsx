@@ -13,7 +13,7 @@ export const MoviesPg = ({ onSubmit, movies }) => {
 // eslint-disable-next-line
   useEffect(() => {
     onSubmit();
-  }, [value]);
+  }, [onSubmit]);
 
   const handleChange = e => {
     setValue(e.target.value);
