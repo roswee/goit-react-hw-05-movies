@@ -1,5 +1,5 @@
 import { useEffect, useState, Suspense } from 'react';
-import { useLocation, useParams, Link, Outlet } from 'react-router-dom';
+import { useLocation, useParams, Outlet } from 'react-router-dom';
 import { fetchDetails } from 'services/API';
 import { Description, Details, MovieInfo, StyledLink, MovieDetails } from './MovieDetailsPg.styled';
 

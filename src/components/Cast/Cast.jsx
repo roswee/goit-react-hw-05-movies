@@ -28,7 +28,8 @@ export const Cast = () => {
                     <img src={
                         profile_path?
                         `https://image.tmdb.org/t/p/w500${profile_path}`
-                    : `https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Images.png`} width="150px"/>
+                    : `https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Images.png`} width="150px"
+                    alt={original_name}/>
                     <p>{original_name}</p>
                     <p>Character: {character}</p>
                 </CastMember>

@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { Nav } from './NavStyles';
 import { StyledLink } from './StyledLink';
