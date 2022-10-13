@@ -1,22 +1,20 @@
-import { useState, useEffect } from 'react';
-import { useLocation, Link,  } from 'react-router-dom';
+import { useState } from 'react';
+import { useLocation, Link, useSearchParams } from 'react-router-dom';
 
 export const MoviesPg = ({ onSubmit, movies }) => {
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState('');
   const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(value);
     setValue('');
   };
-// eslint-disable-next-line
-  useEffect(() => {
-    onSubmit();
-  }, [onSubmit]);
 
   const handleChange = e => {
     setValue(e.target.value);
+    setSearchParams({ query: e.target.value });
   };
   return (
     <>
@@ -24,8 +22,6 @@ export const MoviesPg = ({ onSubmit, movies }) => {
         <input
           name="searchMovie"
           type="text"
-          autoComplete="off"
-          autoFocus
           onChange={handleChange}
           value={value}
           placeholder="Enter movie name"
