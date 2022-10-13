@@ -29,7 +29,7 @@ export const App = () => {
 
   useEffect(() => {
     renderMovies(searchingValue);
-  }, [searchingValue]);
+  }, []);
 
   const searchHandler = value => {
     setMovies([]);
