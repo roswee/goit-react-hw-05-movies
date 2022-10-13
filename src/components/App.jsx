@@ -26,10 +26,10 @@ const MovieDetailsPg = lazy(() =>
 export const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchingValue, setSearchingValue] = useState(null);
-
+// eslint-disable-next-line
   useEffect(() => {
     renderMovies(searchingValue);
-  }, []);
+  });
 
   const searchHandler = value => {
     setMovies([]);

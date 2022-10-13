@@ -10,10 +10,10 @@ export const MoviesPg = ({ onSubmit, movies }) => {
     onSubmit(value);
     setValue('');
   };
-
+// eslint-disable-next-line
   useEffect(() => {
     onSubmit();
-  }, [value]);
+  });
 
   const handleChange = e => {
     setValue(e.target.value);
@@ -39,6 +39,7 @@ export const MoviesPg = ({ onSubmit, movies }) => {
               <img
                 src={`https://image.tmdb.org/t/p/w500${poster_path}`}
                 width="50px"
+                alt={title}
               />
               <Link to={`${id}`} state={location}>
                 {title}

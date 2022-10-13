@@ -11,7 +11,7 @@ export const MovieDetailsPg = () => {
  
   useEffect(() => {
     renderDetails(id);
-  }, []);
+  });
 
   const renderDetails = async id => {
     try {
