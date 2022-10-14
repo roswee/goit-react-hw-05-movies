@@ -26,10 +26,11 @@ const MovieDetailsPg = lazy(() =>
 export const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchingValue, setSearchingValue] = useState(null);
-// eslint-disable-next-line
+  
   useEffect(() => {
     renderMovies(searchingValue);
-  });
+    // eslint-disable-next-line
+  }, [searchingValue]);
 
   const searchHandler = value => {
     setMovies([]);
@@ -38,7 +39,7 @@ export const App = () => {
 
   const renderMovies = async searchingValue => {
     try {
-      if (searchingValue !== '') {
+      if (searchingValue !== Boolean) {
         const result = await fetchByQ(searchingValue);
         setMovies([...result, ...movies]);
       }

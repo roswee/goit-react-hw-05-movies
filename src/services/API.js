@@ -13,26 +13,29 @@ export const fetchTrending = async (time = 'day') => {
   }
 };
 
-export const fetchDetails = async (id) => {
-    const response = await axios.get(`movie/${id}?api_key=${API_KEY}`
-    );
-    return response.data;
+export const fetchDetails = async id => {
+  const response = await axios.get(`movie/${id}?api_key=${API_KEY}`);
+  return response.data;
 };
 
 export const fetchByQ = async value => {
-  const response = axios.get(`search/movie?api_key=${API_KEY}&query=${value}`);
-  return response.data.results;
+  try {const response = await axios.get(
+    `search/movie?api_key=${API_KEY}&query=${value}&page=1&include_adult=false`
+  );
+  return response.data.results;} catch (error) {
+    console.log(error)
+  }
 };
 
 export const fetchCast = async id => {
   const response = await axios.get(`movie/${id}/credits?api_key=${API_KEY}`);
-  return response.data.cast
-}
+  return response.data.cast;
+};
 
 export const fetchReviews = async id => {
-  const response = await axios.get(`movie/${id}/reviews?api_key=${API_KEY}`)
-  return response.data.results
-}
+  const response = await axios.get(`movie/${id}/reviews?api_key=${API_KEY}`);
+  return response.data.results;
+};
 
 const api = { fetchTrending, fetchDetails, fetchByQ, fetchCast };
 

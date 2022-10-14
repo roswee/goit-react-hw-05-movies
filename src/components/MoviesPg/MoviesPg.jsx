@@ -1,20 +1,18 @@
 import { useState } from 'react';
-import { useLocation, Link, useSearchParams } from 'react-router-dom';
+import { useLocation, Link} from 'react-router-dom';
 
 export const MoviesPg = ({ onSubmit, movies }) => {
   const [value, setValue] = useState('');
   const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(value);
-    setValue('');
-  };
+    setValue('');}
+  ;
 
   const handleChange = e => {
     setValue(e.target.value);
-    setSearchParams({ query: e.target.value });
   };
   return (
     <>
@@ -23,7 +21,6 @@ export const MoviesPg = ({ onSubmit, movies }) => {
           name="searchMovie"
           type="text"
           onChange={handleChange}
-          value={value}
           placeholder="Enter movie name"
         ></input>
         <button type="submit"> Search </button>
@@ -32,8 +29,10 @@ export const MoviesPg = ({ onSubmit, movies }) => {
         <ul>
           {movies.map(({ id, title, poster_path }) => (
             <li key={id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+              <img src=
+              {poster_path
+                ?( `https://image.tmdb.org/t/p/w500${poster_path}`)
+                : (`https://th.bing.com/th/id/OIP.n-GYj4PuriTRbbExR10xsgHaHa?w=164&h=180&c=7&r=0&o=5&pid=1.7`)}
                 width="50px"
                 alt={title}
               />
